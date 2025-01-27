@@ -1,0 +1,14 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: nishitakoshta10@gmail.com
+    password: gbyy zxlm cwyk pajo
+    test-connection: true
+    Authentication: Yes
+    protocol: smtp
+    enabled: true
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.ssl.trust: smtp.gmail.com

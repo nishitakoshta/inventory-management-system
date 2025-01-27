@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventory Dashboard</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Inventory Dashboard</h1>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Stock Quantity</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.stockQuantity}"></td>
+            <td>
+                <form th:action="@{/inventory/add}" method="post" class="mb-2">
+                    <input type="hidden" name="productId" th:value="${product.id}">
+                    <input type="number" name="quantity" class="form-control mb-2" placeholder="Quantity" required>
+                    <button type="submit" class="btn btn-success w-100">Add Stock</button>
+                </form>
+                <form th:action="@{/inventory/subtract}" method="post" class="mb-2">
+                    <input type="hidden" name="productId" th:value="${product.id}">
+                    <input type="number" name="quantity" class="form-control mb-2" placeholder="Quantity" required>
+                    <button type="submit" class="btn btn-danger w-100">Subtract Stock</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/inventory/report" class="btn btn-primary btn-lg w-100 mt-4">Download Report</a>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

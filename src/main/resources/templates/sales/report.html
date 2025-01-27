@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5">Sales Report</h2>
+    <p>Click the button below to download the sales report for the last month.</p>
+
+    <form th:action="@{/sales/downloadReport}" method="get">
+        <button type="submit" class="btn btn-primary">Download Sales Report</button>
+    </form>
+</div>
+</body>
+</html>

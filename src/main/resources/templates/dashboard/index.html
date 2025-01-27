@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5">Sales Dashboard</h2>
+
+    <div class="row">
+        <div class="col-6">
+            <h4>Total Sales (Last Month)</h4>
+            <p th:text="${totalSales}"></p>
+        </div>
+        <div class="col-6">
+            <h4>Most Sold Products</h4>
+            <ul>
+                <li th:each="product : ${mostSoldProducts}" th:text="${product.name}"></li>
+            </ul>
+        </div>
+    </div>
+
+    <a href="/sales/report" class="btn btn-primary mt-4">Download Sales Report</a>
+</div>
+</body>
+</html>
