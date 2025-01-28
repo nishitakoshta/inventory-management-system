@@ -7,6 +7,8 @@ WORKDIR /app
 # Copy the Gradle wrapper and Gradle files first
 COPY gradlew /app/gradlew
 COPY gradle /app/gradle
+
+# Give executable permissions to gradlew (if not already executable)
 RUN chmod +x /app/gradlew
 
 # Copy the rest of your project files into the container
