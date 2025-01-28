@@ -12,22 +12,22 @@ public class HomeController {
     // Define additional routes to handle the other pages/templates
     @GetMapping("/sales-dashboard")
     public String salesDashboard() {
-        return "sales-dashboard"; // This refers to sales-dashboard.html (or .thymeleaf)
+        return "dashboard/index"; // This refers to sales-dashboard.html (or .thymeleaf)
     }
 
     @GetMapping("/create")
     public String create() {
-        return "create"; // This refers to create.html
+        return "sales/create"; // This refers to create.html
     }
 
     @GetMapping("/list")
     public String list() {
-        return "list"; // This refers to list.html
+        return "sales/list"; // This refers to list.html
     }
 
     @GetMapping("/report")
     public String report() {
-        return "report"; // This refers to report.html
+        return "sales/report"; // This refers to report.html
     }
 
     @GetMapping("/add-products")
