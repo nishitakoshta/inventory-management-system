@@ -8,11 +8,11 @@ WORKDIR /app
 COPY gradlew /app/gradlew
 COPY gradle /app/gradle
 
-# Give executable permissions to gradlew (if not already executable)
-RUN chmod +x /app/gradlew
-
 # Copy the rest of your project files into the container
 COPY . /app
+
+# Give executable permissions to gradlew (if not already executable)
+RUN chmod +x /app/gradlew
 
 # Install Gradle dependencies and build the project
 RUN ./gradlew clean build -x test
