@@ -7,7 +7,6 @@ WORKDIR /app
 # Copy the Gradle wrapper and Gradle files first
 COPY gradlew /app/gradlew
 COPY gradle /app/gradle
-
 # Copy the rest of your project files into the container
 COPY . /app
 
@@ -15,13 +14,13 @@ COPY . /app
 RUN chmod +x /app/gradlew
 
 # Install Gradle dependencies and build the project
-RUN ./gradlew clean build -x test
+RUN ./gradlew clean build
 
 # Create necessary log directories if you’re writing logs to a specific path
 RUN mkdir -p /home/inventory-logs
 
-# Expose the port your Spring Boot app will run on
+# Expose port 8085 (or whichever port your app is using)
 EXPOSE 8085
 
-# Command to wait for MySQL to be ready and then start the application
-CMD ["./wait-for-it.sh", "db:3306", "--", "java", "-jar", "build/libs/inventorymanagementsystem-0.0.1-SNAPSHOT.jar"]
+# Command to run the application (adjust according to your project setup)
+CMD ["java", "-jar", "build/libs/inventorymanagementsystem-0.0.1-SNAPSHOT.jar"]
