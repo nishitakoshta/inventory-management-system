@@ -17,8 +17,11 @@ COPY . /app
 # Install Gradle dependencies and build the project
 RUN ./gradlew clean build -x test
 
-# Expose port 8085 (or whichever port your app is using)
+# Create necessary log directories if you’re writing logs to a specific path
+RUN mkdir -p /home/inventory-logs
+
+# Expose the port your Spring Boot app will run on
 EXPOSE 8085
 
-# Command to run the application (adjust according to your project setup)
-CMD ["java", "-jar", "build/libs/inventorymanagementsystem-0.0.1-SNAPSHOT.jar"]
+# Command to wait for MySQL to be ready and then start the application
+CMD ["./wait-for-it.sh", "db:3306", "--", "java", "-jar", "build/libs/inventorymanagementsystem-0.0.1-SNAPSHOT.jar"]
