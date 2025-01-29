@@ -40,7 +40,7 @@ public class HomeController {
         return "analytics-dashboard"; // This refers to analytics-dashboard.html
     }
 
-    @GetMapping("/inventory")
+    @GetMapping("/inventory-dashboard")
     public String inventoryDashboard() {
         return "inventory-dashboard"; // This refers to inventory-dashboard.html
     }
