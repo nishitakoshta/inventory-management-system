@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Product</title>
+    <!-- Bootstrap CSS for styling -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Update Product Information</h1>
+    <!-- Product Update Form -->
+    <form th:action="@{/products/update}" th:object="${product}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter product name" required />
+            <div th:if="${#fields.hasErrors('name')}" class="text-danger">
+                <span th:each="err : ${#fields.errors('name')}" th:text="${err}"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Product Description</label>
+            <textarea id="description" th:field="*{description}" class="form-control" placeholder="Enter product description" required></textarea>
+            <div th:if="${#fields.hasErrors('description')}" class="text-danger">
+                <span th:each="err : ${#fields.errors('description')}" th:text="${err}"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" id="price" th:field="*{price}" class="form-control" step="0.01" placeholder="Enter product price" required />
+            <div th:if="${#fields.hasErrors('price')}" class="text-danger">
+                <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="stockQuantity" class="form-label">Stock Quantity</label>
+            <input type="number" id="stockQuantity" th:field="*{stockQuantity}" class="form-control" placeholder="Enter stock quantity" required />
+            <div th:if="${#fields.hasErrors('stockQuantity')}" class="text-danger">
+                <span th:each="err : ${#fields.errors('stockQuantity')}" th:text="${err}"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Product</button>
+        <a href="/products/productList" class="btn btn-secondary ml-2">Back to Product List</a>
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

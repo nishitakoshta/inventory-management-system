@@ -32,6 +32,11 @@ dependencies {
 	implementation 'org.apache.poi:poi-ooxml-schemas:4.1.2'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket:3.4.2'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.hibernate:hibernate-validator:6.2.0.Final' // Use the latest version
+	// Validation API dependency
+	implementation 'javax.validation:validation-api:2.0.1.Final'
+	// JSR 303/JSR 380 API support (optional but can be useful)
+	implementation 'org.glassfish:javax.el:3.0.0'
 
 }
 

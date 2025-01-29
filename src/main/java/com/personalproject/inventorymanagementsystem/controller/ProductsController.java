@@ -2,14 +2,14 @@ package com.personalproject.inventorymanagementsystem.controller;
 import com.personalproject.inventorymanagementsystem.model.Products;
 import com.personalproject.inventorymanagementsystem.repository.ProductsRepository;
 import com.personalproject.inventorymanagementsystem.service.ProductsService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
@@ -35,4 +35,24 @@ public class ProductsController {
         model.addAttribute("products", productsService.getProductList());
         return "product-list";
     }
+    @GetMapping("/update/{id}")
+    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+        Products product = productsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product ID: " + id));
+        model.addAttribute("product", product);
+        return "update-product"; // Display the update product form
+    }
+
+    @PostMapping("/update")
+    public String updateProduct(@ModelAttribute("product") @Valid Products product, BindingResult result) {
+        // Check if there are validation errors
+        if (result.hasErrors()) {
+            return "update-product"; // If errors, return to the form with error messages
+        }
+
+        // Save the updated product in the database
+        productsRepository.save(product);
+        return "redirect:/products/productList"; // Redirect to the product list page after updating
+    }
+
 }

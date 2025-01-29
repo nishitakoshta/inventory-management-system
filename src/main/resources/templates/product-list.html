@@ -16,6 +16,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Stock Quantity</th>
+            <th>Actions</th> <!-- Add this column for actions (Edit) -->
         </tr>
         </thead>
         <tbody>
@@ -24,6 +25,10 @@
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.stockQuantity}"></td>
+            <td>
+                <!-- Link to the update page for each product -->
+                <a th:href="@{/products/update/{id}(id=${product.id})}" class="btn btn-warning">Edit</a>
+            </td>
         </tr>
         </tbody>
     </table>
